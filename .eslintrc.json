@@ -6,10 +6,9 @@
   "extends": [
     "airbnb",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
-  "parser": "@typescript-eslint/parser",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -17,7 +16,13 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
+  "plugins": [
+    "babel",
+    "react",
+    "import",
+    "prettier",
+    "react-hooks"
+  ],
   "rules": {
     "prettier/prettier": [
       "error",
@@ -29,68 +34,40 @@
         "endOfLine": "lf"
       }
     ],
-    "implicit-arrow-linebreak": "off",
-    "operator-linebreak": "off",
-    "comma-dangle": "off",
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
-    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
-    // Allows moving test dependencies to devDepencies in tests
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": [
-          "**/*.test.ts",
-          "**/*.test.tsx",
-          "**/*.d.ts",
-          "**/jest.config.ts"
-        ]
-      }
-    ],
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "ts": "never",
-        "tsx": "never"
-      }
-    ],
-    // Disaable jsx no-shadow and enable typescript's
-    "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"],
-
-    // Enfor rules of hooks and exhaustive deps
+    "import/no-duplicates": "error",
+    "import/no-unresolved": "error",
+    "import/named": "error",
+    "react/no-typos": "error",
+    "react/no-unused-state": "error",
     "react-hooks/rules-of-hooks": "error",
+    // Checks rules of Hooks
     "react-hooks/exhaustive-deps": "warn",
-
-    // Unused variables start with _
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      { "argsIgnorePattern": "^_" }
-    ],
-
-    "import/prefer-default-export": "off",
-
-    // No props types since we're using TypeScript
-    "react/prop-types": "off",
-
-    // No default props, handle this with TypScript
-    "react/require-default-props": "off",
+    // Checks effect dependencies
+    "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-
-    // Allow parameter reassign
-    "no-param-reassign": "off",
-
-    // No display name
+    "array-callback-return": "error",
+    "consistent-return": "error",
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "babel/no-invalid-this": "error",
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "react/jsx-no-bind": "off",
     "react/display-name": "off",
-
-    // Disallow ++ operator, except at the end of for loops
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    "react/jsx-props-no-spreading": "off"
   },
   "overrides": [
     {
       // Rules for webpack config
-      "files": ["config/*.js"],
+      "files": [
+        "config/*.js"
+      ],
       "rules": {
         "@typescript-eslint/no-var-requires": "off",
         "import/no-extraneous-dependencies": "off",
@@ -101,8 +78,10 @@
     }
   ],
   "settings": {
-    "import/resolver": {
-      "typescript": {}
+    "react": {
+      "pragma": "React",
+      "version": "detect",
+      "flowVersion": "0.63.1"
     }
   }
 }

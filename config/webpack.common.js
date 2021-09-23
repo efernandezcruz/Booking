@@ -1,16 +1,15 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const dotenv = require('dotenv-webpack');
 const paths = require('./paths');
 
 module.exports = {
   // Where webpack looks to start building the bundle
-  entry: [paths.src + '/index.tsx'],
+  entry: [paths.src + '/index.jsx'],
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
   },
 
   // Where webpack outputs the assets and bundles
@@ -31,15 +30,6 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
-      },
-      {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
-        exclude: /node_modules/,
-        options: {
-          // disable type checker - we will use it in fork plugin
-          transpileOnly: true,
-        },
       },
       // Images: Copy image files to build folder
       { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
@@ -84,6 +74,5 @@ module.exports = {
     }),
     new dotenv({ path: `${__dirname}/config.env` }),
     // Run type checking and linting on separate processes to speed up compilation
-    new ForkTsCheckerWebpackPlugin(),
   ],
 };

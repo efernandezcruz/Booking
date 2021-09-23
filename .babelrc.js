@@ -18,7 +18,6 @@ module.exports = {
         runtime: 'automatic',
       },
     ],
-    '@babel/preset-typescript',
   ],
   plugins: [
     '@babel/plugin-syntax-dynamic-import',
