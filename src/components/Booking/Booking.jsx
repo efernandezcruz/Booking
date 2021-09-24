@@ -5,6 +5,7 @@ import { MenuItem, Select } from '@mui/material';
 import { Search } from '@material-ui/icons';
 import SearchAirport from './SearchAirport/SearchAirport';
 import PassengersSelector from './PassengersSelector/PassengersSelector';
+import classes from './Booking.module.css';
 
 const Booking = ({ onSearchFlights }) => {
   const [flightType, setFlightType] = useState('One-way');
@@ -28,13 +29,16 @@ const Booking = ({ onSearchFlights }) => {
 
   return (
     <>
+      {/* Title */}
+      <h1 className={`d-none d-md-block ${classes.Title}`}>
+        Search hundreds of travel sites at once
+      </h1>
       <form onSubmit={handleSubmit}>
-        {/* Title */}
-        <h1>Search hundreds of travel sites at once</h1>
-
         {/* Flight type selector */}
         <Select
           value={flightType}
+          classes={{ root: classes.Select }}
+          variant="standard"
           label="Flight Type"
           onChange={(event) => {
             setFlightType(event.target.value);
@@ -47,6 +51,8 @@ const Booking = ({ onSearchFlights }) => {
         {/* Travel class selector */}
         <Select
           value={travelClass}
+          classes={{ root: classes.Select }}
+          variant="standard"
           label="Travel Class"
           onChange={(event) => {
             setTravelClass(event.target.value);
@@ -60,28 +66,39 @@ const Booking = ({ onSearchFlights }) => {
 
         <PassengersSelector onClose={setPassengers} />
 
-        {/* Origin */}
-        <SearchAirport onAirportSelect={setOrigin} placeholder="Origin" />
+        <div className="row">
+          {/* Origin */}
+          <div className="col-12 col-md-4 px-1">
+            <SearchAirport onAirportSelect={setOrigin} placeholder="Origin" />
+          </div>
 
-        {/* Destination */}
-        <SearchAirport
-          onAirportSelect={setDestination}
-          placeholder="Destination"
-        />
+          {/* Destination */}
+          <div className="col-12 col-md-4 px-1">
+            <SearchAirport
+              onAirportSelect={setDestination}
+              placeholder="Destination"
+            />
+          </div>
 
-        {/* Date range */}
-        <Calendar
-          selectionMode="range"
-          numberOfMonths={2}
-          dateFormat="dd/mm/yy"
-          value={date}
-          onChange={(e) => setDate(e.value)}
-          readOnlyInput
-        />
+          {/* Date range */}
+          <div className="col-12 col-md-3 px-1">
+            <Calendar
+              className={classes.Calendar}
+              selectionMode="range"
+              numberOfMonths={2}
+              dateFormat="dd/mm/yy"
+              value={date}
+              onChange={(e) => setDate(e.value)}
+              readOnlyInput
+            />
+          </div>
 
-        <button type="submit">
-          <Search />
-        </button>
+          <div className="col-12 col-md-1 px-1">
+            <button type="submit" className={classes.SearchButton}>
+              <Search />
+            </button>
+          </div>
+        </div>
       </form>
     </>
   );

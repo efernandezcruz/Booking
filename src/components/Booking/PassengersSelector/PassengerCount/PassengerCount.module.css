@@ -1,0 +1,36 @@
+.Button {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #9ba8b0;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0 !important;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+.ButtonGroup {
+  display: flex;
+  background: #fff;
+  color: #192024;
+}
+
+.Item {
+  line-height: 33px !important;
+  min-width: 250px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  font-size: 14px !important;
+}
+
+.Count {
+  width: 21px;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+}

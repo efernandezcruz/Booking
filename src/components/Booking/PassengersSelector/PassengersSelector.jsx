@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { Button, Menu } from '@mui/material';
 import { useState } from 'react';
 import PassengerCount from './PassengerCount/PassengerCount';
+import classes from './PassengerSelector.module.css';
 
 const PassengersSelector = ({ onClose }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -21,8 +22,8 @@ const PassengersSelector = ({ onClose }) => {
   };
 
   return (
-    <div>
-      <Button onClick={handleClick}>
+    <>
+      <Button onClick={handleClick} classes={{ root: classes.Button }}>
         {`${total} ${total > 1 ? 'travelers' : 'adult'}`}
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
@@ -60,7 +61,7 @@ const PassengersSelector = ({ onClose }) => {
           }}
         />
       </Menu>
-    </div>
+    </>
   );
 };
 

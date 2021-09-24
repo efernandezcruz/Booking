@@ -1,0 +1,19 @@
+.Root {
+  display: inline-block;
+  padding-right: 0;
+}
+
+.Spinner {
+  position: absolute;
+  top: 10px;
+  float: right;
+  right: 13px;
+}
+
+.Input {
+  width: 100%;
+  height: 39px;
+  border: 1px solid var(--booking-input-border-color);
+  border-radius: 3px;
+  padding: 0 0 0 8px;
+}

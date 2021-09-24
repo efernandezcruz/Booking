@@ -3,8 +3,14 @@ import { Autocomplete, CircularProgress } from '@mui/material';
 import { useEffect, useMemo, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { getAirportsRequest } from '../../../requests/airportRequests';
+import classes from './SearchAirport.module.css';
 
-const SearchAirport = ({ keywordInit, onAirportSelect, placeholder }) => {
+const SearchAirport = ({
+  keywordInit,
+  onAirportSelect,
+  placeholder,
+  className,
+}) => {
   const [results, setResults] = useState([]);
   const [showOptions, setShowOptions] = useState(false);
   const [keyword, setKeyword] = useState('');
@@ -82,6 +88,8 @@ const SearchAirport = ({ keywordInit, onAirportSelect, placeholder }) => {
   return (
     <>
       <Autocomplete
+        classes={{ root: `${className} ${classes.Root}` }}
+        fullWidth
         freeSolo
         open={showOptions}
         options={results}
@@ -99,7 +107,7 @@ const SearchAirport = ({ keywordInit, onAirportSelect, placeholder }) => {
             onBlur: () => {
               setShowOptions(false);
             },
-            className: `${params.inputProps.className}`,
+            className: classes.Input,
             // Get placeholder from prop
             placeholder,
           };
@@ -115,10 +123,17 @@ const SearchAirport = ({ keywordInit, onAirportSelect, placeholder }) => {
               /* Add height to this div so that suggestions
                * flipping works
                */
-              style={{ height: '50px', position: 'relative' }}
+              // style={{ height: '50px', position: 'relative' }}
+              style={{ width: '100%', position: 'relative' }}
             >
               <input {...inputProps} />
-              {isLoading && <CircularProgress color="inherit" size={20} />}
+              {isLoading && (
+                <CircularProgress
+                  color="inherit"
+                  size={20}
+                  classes={{ root: classes.Spinner }}
+                />
+              )}
             </div>
           );
         }}
@@ -130,11 +145,13 @@ const SearchAirport = ({ keywordInit, onAirportSelect, placeholder }) => {
 export default SearchAirport;
 
 SearchAirport.propTypes = {
+  className: PropTypes.string,
   keywordInit: PropTypes.string,
   onAirportSelect: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
 };
 
 SearchAirport.defaultProps = {
+  className: '',
   keywordInit: '',
 };

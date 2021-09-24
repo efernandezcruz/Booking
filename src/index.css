@@ -1,0 +1,14 @@
+/*variables*/
+:root {
+  --booking-button-color: #495057;
+  --booking-input-border-color: #ced4da;
+  --booking-input-focus-visible-outline: #757575;
+}
+
+input:focus-visible,
+input:focus,
+input:hover {
+  outline: none !important;
+  border-color: var(--booking-input-focus-visible-outline) !important;
+  box-shadow: none !important;
+}

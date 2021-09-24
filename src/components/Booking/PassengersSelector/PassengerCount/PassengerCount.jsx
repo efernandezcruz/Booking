@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { MenuItem } from '@mui/material';
+import classes from './PassengerCount.module.css';
 
 const PassengerCount = ({
   passengerTitle,
@@ -8,15 +9,25 @@ const PassengerCount = ({
   onIncreasePassenger,
 }) => (
   <>
-    <MenuItem>
+    <MenuItem classes={{ root: classes.Item }}>
       <span>{passengerTitle}</span>
-      <button onClick={onDecreasePassenger} type="button">
-        -
-      </button>
-      <span>{passengerCount}</span>
-      <button onClick={onIncreasePassenger} type="button">
-        +
-      </button>
+      <div className={classes.ButtonGroup}>
+        <button
+          className={classes.Button}
+          onClick={onDecreasePassenger}
+          type="button"
+        >
+          -
+        </button>
+        <span className={classes.Count}>{passengerCount}</span>
+        <button
+          className={classes.Button}
+          onClick={onIncreasePassenger}
+          type="button"
+        >
+          +
+        </button>
+      </div>
     </MenuItem>
   </>
 );
