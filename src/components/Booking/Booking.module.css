@@ -27,7 +27,17 @@
   height: 39px;
 }
 
+.Calendar input {
+  padding-left: 41px;
+}
+
 .Title {
   font-family: Forza, 'Helvetica Neue', 'Helvetica Neue', Helvetica, Arial,
     sans-serif, 'Helvetica Neue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.CalendarIcon {
+  position: absolute;
+  top: 17px;
+  left: 13px;
 }

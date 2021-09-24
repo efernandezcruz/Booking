@@ -3,6 +3,7 @@ import { Button, Menu } from '@mui/material';
 import { useState } from 'react';
 import PassengerCount from './PassengerCount/PassengerCount';
 import classes from './PassengerSelector.module.css';
+import { ArrowDropDown, ArrowDropUp } from '@material-ui/icons';
 
 const PassengersSelector = ({ onClose }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -25,6 +26,7 @@ const PassengersSelector = ({ onClose }) => {
     <>
       <Button onClick={handleClick} classes={{ root: classes.Button }}>
         {`${total} ${total > 1 ? 'travelers' : 'adult'}`}
+        {anchorEl ? <ArrowDropUp /> : <ArrowDropDown />}
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <PassengerCount

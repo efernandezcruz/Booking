@@ -15,5 +15,12 @@
   height: 39px;
   border: 1px solid var(--booking-input-border-color);
   border-radius: 3px;
-  padding: 0 0 0 8px;
+  padding: 0 0 0 38px;
+}
+
+.Airport {
+  position: absolute;
+  top: 8px;
+  float: left;
+  left: 7px;
 }

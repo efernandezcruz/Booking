@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Calendar } from 'primereact/calendar';
 import { useState } from 'react';
 import { MenuItem, Select } from '@mui/material';
-import { Search } from '@material-ui/icons';
+import { Event, Search } from '@material-ui/icons';
 import SearchAirport from './SearchAirport/SearchAirport';
 import PassengersSelector from './PassengersSelector/PassengersSelector';
 import classes from './Booking.module.css';
@@ -81,7 +81,10 @@ const Booking = ({ onSearchFlights }) => {
           </div>
 
           {/* Date range */}
-          <div className="col-12 col-md-3 px-1">
+          <div
+            className="col-12 col-md-3 px-1"
+            style={{ position: 'relative' }}
+          >
             <Calendar
               className={classes.Calendar}
               selectionMode="range"
@@ -91,6 +94,7 @@ const Booking = ({ onSearchFlights }) => {
               onChange={(e) => setDate(e.value)}
               readOnlyInput
             />
+            <Event classes={{ root: classes.CalendarIcon }} />
           </div>
 
           <div className="col-12 col-md-1 px-1">

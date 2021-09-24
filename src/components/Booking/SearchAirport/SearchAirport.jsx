@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { Autocomplete, CircularProgress } from '@mui/material';
 import { useEffect, useMemo, useState } from 'react';
 import debounce from 'lodash.debounce';
+import { LocalAirport } from '@material-ui/icons';
 import { getAirportsRequest } from '../../../requests/airportRequests';
 import classes from './SearchAirport.module.css';
 
@@ -127,6 +128,7 @@ const SearchAirport = ({
               style={{ width: '100%', position: 'relative' }}
             >
               <input {...inputProps} />
+              <LocalAirport classes={{ root: classes.Airport }} />
               {isLoading && (
                 <CircularProgress
                   color="inherit"
